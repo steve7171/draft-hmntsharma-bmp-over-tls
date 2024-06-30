@@ -22,8 +22,8 @@ venue:
 #  type: Working Group
 #  mail: WG@example.com
 #  arch: https://example.com/WG
-  github: "hmntsharma/draft-hmntsharma-bmp-over-tls"
-  latest: "https://hmntsharma.github.io/draft-hmntsharma-bmp-over-tls/draft-hmntsharma-bmp-over-tls.html"
+#  github: "hmntsharma/draft-hmntsharma-bmp-over-tls"
+#  latest: "https://hmntsharma.github.io/draft-hmntsharma-bmp-over-tls/draft-hmntsharma-bmp-over-tls.html"
 
 author:
  -
@@ -52,7 +52,7 @@ The BGP Monitoring Protocol (BMP) defines the communication between a BMP statio
 
 # Requirements Language
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14  RFC2119   RFC8174  when, and only when, they appear in all capitals, as shown here.
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 {{RFC2119}} {{RFC8174}} when, and only when, they appear in all capitals, as shown here.
 
 # Introduction
 
