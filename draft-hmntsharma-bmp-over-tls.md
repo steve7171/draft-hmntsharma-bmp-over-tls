@@ -31,6 +31,18 @@ author:
     organization: Vodafone
     email: hemant.sharma@vodafone.com
 
+normative:
+ RFC2818:
+ RFC5246:
+ RFC7854:
+
+informative:
+ RFC793:
+ RFC5925:
+ RFC7525:
+ RFC8253:
+
+
 --- abstract
 
 The BGP Monitoring Protocol (BMP) defines the communication between a BMP station and multiple routers. This document describes **BMP over TLS**, which uses Transport Layer Security (TLS) to ensure secure transport between the router and the BMP monitoring station. It updates RFC 7854 regarding BMP session establishment and termination.
@@ -49,7 +61,7 @@ The BGP Monitoring Protocol (BMP), as defined in {{RFC7854}}, facilitates commun
 
 The {{Section 11 of RFC7854}}, "Security Considerations" acknowledges that while routes in public networks are generally not confidential, BGP is also utilized in private L3VPN {{RFC4364}} networks where confidentiality is crucial. It highlights that without mutual authentication through secure transport mechanisms, the channel is vulnerable to various attacks and recommends using IPSec {{RFC4303}} in tunnel mode with pre-shared keys for enhanced security in such scenarios.
 
-Additionally, a recent draft proposal titled "TCP-AO Protection for BGP Monitoring Protocol (BMP)" {{draft-hmntsharma-bmp-tcp-ao}} suggests an alternative approach using the TCP Authentication Option {{RFC5925}}. This method authenticates the endpoints of the TCP session, thereby safeguarding its integrity. TCP-AO is beneficial in situations where full IPSec security may not be feasible, although unlike IPSec, it does not encrypt the session traffic.
+Additionally, a recent draft proposal, draft-hmntsharma-bmp-tcp-ao, titled "TCP-AO Protection for BGP Monitoring Protocol (BMP)" suggests an alternative approach using the TCP Authentication Option {{RFC5925}}. This method authenticates the endpoints of the TCP session, thereby safeguarding its integrity. TCP-AO is beneficial in situations where full IPSec security may not be feasible, although unlike IPSec, it does not encrypt the session traffic.
 
 Alternatively, Transport Layer Security (TLS), offers endpoint authentication, data encryption, and data integrity defined in The Transport Layer Security (TLS) Protocol Version 1.2 {{RFC5246}} and The Transport Layer Security (TLS) Protocol Version 1.3 {{RFC8446}}.
 
