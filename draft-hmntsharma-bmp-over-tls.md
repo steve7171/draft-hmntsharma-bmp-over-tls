@@ -74,7 +74,7 @@ Alternatively, Transport Layer Security (TLS), offers endpoint authentication, d
 This document describes how to utilize TLS to secure BMP sessions between a monitoring station (acting as the server) and a router (acting as the client). Unlike BGP, where either side can act as the server, BMP's role distinction simplifies the implementation of TLS in a client-server model. Henceforth, the term **BMP over TLS** will be referred to as **BMPS**.
 
 
-# BMP over TLS (BMPS) 
+# BMP over TLS (BMPS)
 
 ## Operational Summary
 
@@ -97,7 +97,7 @@ It is RECOMMENDED to adhere to the guidelines in {{RFC7525}} by employing Strict
 
 ## Transport Layer Security
 
-In regular TLS connections, the server has a TLS certificate along with a public/private key pair, whereas the client does not. 
+In regular TLS connections, the server has a TLS certificate along with a public/private key pair, whereas the client does not.
 
 For BMP over TLS (BMPS), it is REQUIRED to implement mutual TLS (mTLS), wherein both the server (BMP station) and the client (router) have certificates, and both sides authenticate each other using their respective public/private key pairs.
 
