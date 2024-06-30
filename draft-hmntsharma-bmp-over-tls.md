@@ -31,17 +31,6 @@ author:
     organization: Vodafone
     email: hemant.sharma@vodafone.com
 
-normative:
- RFC2818:
- RFC5246:
- RFC7854:
-
-informative:
- RFC793:
- RFC5925:
- RFC7525:
- RFC8253:
-
 
 --- abstract
 
