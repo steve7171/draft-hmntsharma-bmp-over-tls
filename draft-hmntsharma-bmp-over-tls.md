@@ -31,18 +31,6 @@ author:
     organization: Vodafone
     email: hemant.sharma@vodafone.com
 
-normative:
- RFC2818:
- RFC5246:
- RFC7854:
-
-informative:
- RFC793:
- RFC5925:
- RFC7525:
- RFC8253:
-
-
 --- abstract
 
 The BGP Monitoring Protocol (BMP) defines the communication between a BMP station and multiple routers. This document describes **BMP over TLS**, which uses Transport Layer Security (TLS) to ensure secure transport between the router and the BMP monitoring station. It updates RFC 7854 regarding BMP session establishment and termination.
