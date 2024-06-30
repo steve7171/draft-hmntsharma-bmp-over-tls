@@ -43,7 +43,6 @@ informative:
  RFC8253:
  draft-hmntsharma-bmp-tcp-ao:
 
-
 --- abstract
 
 The BGP Monitoring Protocol (BMP) defines the communication between a BMP station and multiple routers. This document describes **BMP over TLS**, which uses Transport Layer Security (TLS) to ensure secure transport between the router and the BMP monitoring station. It updates RFC 7854 regarding BMP session establishment and termination.
