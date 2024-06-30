@@ -1,0 +1,271 @@
+
+
+
+
+GROW                                                           H. Sharma
+Internet-Draft                                                  Vodafone
+Updates: 7854 (if approved)                                 30 June 2024
+Intended status: Informational                                          
+Expires: 1 January 2025
+
+
+       BMPS: Transport Layer Security for BGP Monitoring Protocol
+                  draft-hmntsharma-bmp-over-tls-latest
+
+Abstract
+
+   The BGP Monitoring Protocol (BMP) defines the communication between a
+   BMP station and multiple routers.  This document describes *BMP over
+   TLS*, which uses Transport Layer Security (TLS) to ensure secure
+   transport between the router and the BMP monitoring station.  It
+   updates RFC 7854 regarding BMP session establishment and termination.
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on 1 January 2025.
+
+Copyright Notice
+
+   Copyright (c) 2024 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
+   and restrictions with respect to this document.
+
+Table of Contents
+
+   1.  Requirements Language
+   2.  Introduction
+   3.  BMP over TLS (BMPS)
+     3.1.  Operational Summary
+     3.2.  Transport Layer Security
+     3.3.  Operational Recommendations for BMPS
+   4.  Security Considerations
+   5.  IANA Considerations
+   6.  References
+     6.1.  Normative References
+     6.2.  Informative References
+   Acknowledgments
+   Author's Address
+
+1.  Requirements Language
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in BCP
+   14 RFC2119 RFC8174 when, and only when, they appear in all capitals,
+   as shown here.
+
+2.  Introduction
+
+   The BGP Monitoring Protocol (BMP), as defined in RFC7854 ,
+   facilitates communication between routers and a BMP station.  Keeping
+   this communication secure is important because it includes sharing
+   sensitive information about BGP peers and monitored prefixes.
+
+   The Section 11 of RFC7854 , "Security Considerations" acknowledges
+   that while routes in public networks are generally not confidential,
+   BGP is also utilized in private L3VPN RFC4364 networks where
+   confidentiality is crucial.  It highlights that without mutual
+   authentication through secure transport mechanisms, the channel is
+   vulnerable to various attacks and recommends using IPSec RFC4303 in
+   tunnel mode with pre-shared keys for enhanced security in such
+   scenarios.
+
+   Additionally, a recent draft proposal, draft-hmntsharma-bmp-tcp-ao,
+   titled "TCP-AO Protection for BGP Monitoring Protocol (BMP)" suggests
+   an alternative approach using the TCP Authentication Option RFC5925 .
+   This method authenticates the endpoints of the TCP session, thereby
+   safeguarding its integrity.  TCP-AO is beneficial in situations where
+   full IPSec security may not be feasible, although unlike IPSec, it
+   does not encrypt the session traffic.
+
+   Alternatively, Transport Layer Security (TLS), offers endpoint
+   authentication, data encryption, and data integrity defined in The
+   Transport Layer Security (TLS) Protocol Version 1.2 RFC5246 and The
+   Transport Layer Security (TLS) Protocol Version 1.3 RFC8446 .
+
+   This document describes how to utilize TLS to secure BMP sessions
+   between a monitoring station (acting as the server) and a router
+   (acting as the client).  Unlike BGP, where either side can act as the
+   server, BMP's role distinction simplifies the implementation of TLS
+   in a client-server model.  Henceforth, the term *BMP over TLS* will
+   be referred to as *BMPS*.
+
+3.  BMP over TLS (BMPS)
+
+3.1.  Operational Summary
+
+   The operation of BMPS is virtually the same as the original BMP
+   specification defined in RFC7854 , but with an additional layer of
+   security using TLS.
+
+   In BMPS, the BMP station functions as the TLS server, while routers
+   act as TLS clients.  Following the completion of the TCP three-way
+   handshake, as defined in Section 3.4 of RFC793 , each router,
+   functioning as a TLS client, initiates a TLS handshake with the BMP
+   monitoring station, acting as the TLS server.  Once the TLS
+   connection is successfully established, routers can immediately start
+   transmitting BMP messages, as there is no separate BMP initiation or
+   handshake phase.
+
+   The following steps summarize the operational flow of BMPS:
+
+   1.  Configure a TLS client profile on the router(s).
+
+   2.  Configure a TLS server profile on the BMP monitoring station(s).
+
+   3.  The router initiates and completes a TCP handshake.
+
+   4.  The router initiates and completes a TLS handshake with the BMP
+       monitoring station.
+
+   5.  BMP messages are transmitted by the router according to RFC7854 .
+
+   A BMPS session ends when the underlying TCP session utilizing TLS, is
+   terminated for any reason.
+
+   It is RECOMMENDED to adhere to the guidelines in RFC7525 by employing
+   Strict TLS, ensuring that only TLS-secured BMP sessions are permitted
+   once the BMP station is configured with a TLS server profile.
+   Furthermore, it is advised to maintain the same TCP port for incoming
+   BMP session requests on the BMP station after the TLS server profile
+   is applied, for simplified operation.
+
+3.2.  Transport Layer Security
+
+   In regular TLS connections, the server has a TLS certificate along
+   with a public/private key pair, whereas the client does not.
+
+   For BMP over TLS (BMPS), it is REQUIRED to implement mutual TLS
+   (mTLS), wherein both the server (BMP station) and the client (router)
+   have certificates, and both sides authenticate each other using their
+   respective public/private key pairs.
+
+   The organizations implementing mTLS SHOULD be their own Certification
+   Authority (CA), to create their own self-signed "root" certificate.
+   The certificates issued to both the BMP station and routers should
+   correspond to this root certificate.
+
+   The operational flow of BMP over TLS is similar to standard TLS
+   operations:
+
+   1.  The router initiates the connection to the BMP station.
+
+   2.  The station presents its TLS certificate.
+
+   3.  The router verifies the station's certificate.
+
+   4.  The router presents its TLS certificate.
+
+   5.  The station verifies the router's certificate.
+
+   6.  The TLS connection is established.
+
+   7.  The router begins transmitting BMP data to the station over the
+       encrypted TLS channel.
+
+   TLS version 1.3, defined in RFC8446 , streamlines the handshake
+   process and supports more robust cipher suites compared to TLS
+   version 1.2 RFC5246 , enhancing both speed and security.  However,
+   widespread support for TLS 1.3 remains limited, with many systems
+   still primarily utilizing TLS 1.2.
+
+3.3.  Operational Recommendations for BMPS
+
+   The BMP over TLS (BMPS) is RECOMMENDED as an alternative mechanism to
+   safeguard BMP sessions in scenarios where alternative protections
+   like IPSec may not be feasible or deployed.
+
+4.  Security Considerations
+
+   The BMPS implementation increases computational demands due to
+   continuous encryption and decryption processes, resulting in high CPU
+   utilization and potential vulnerability to denial-of-service attacks.
+
+   The TLS cipher suites that provide only data integrity validation
+   without encryption SHOULD NOT be used by default.
+
+   It is RECOMMENDED to adhere to the Recommendations for Secure Use of
+   Transport Layer Security (TLS) and Datagram Transport Layer Security
+   (DTLS) as defined in RFC7525 .
+
+5.  IANA Considerations
+
+   This document has no IANA actions.
+
+6.  References
+
+6.1.  Normative References
+
+   [RFC2818]  Rescorla, E., "HTTP Over TLS", RFC 2818,
+              DOI 10.17487/RFC2818, May 2000,
+              <https://www.rfc-editor.org/rfc/rfc2818>.
+
+   [RFC5246]  Dierks, T. and E. Rescorla, "The Transport Layer Security
+              (TLS) Protocol Version 1.2", RFC 5246,
+              DOI 10.17487/RFC5246, August 2008,
+              <https://www.rfc-editor.org/rfc/rfc5246>.
+
+   [RFC7854]  Scudder, J., Ed., Fernando, R., and S. Stuart, "BGP
+              Monitoring Protocol (BMP)", RFC 7854,
+              DOI 10.17487/RFC7854, June 2016,
+              <https://www.rfc-editor.org/rfc/rfc7854>.
+
+   [RFC8446]  Rescorla, E., "The Transport Layer Security (TLS) Protocol
+              Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
+              <https://www.rfc-editor.org/rfc/rfc8446>.
+
+6.2.  Informative References
+
+   [RFC5925]  Touch, J., Mankin, A., and R. Bonica, "The TCP
+              Authentication Option", RFC 5925, DOI 10.17487/RFC5925,
+              June 2010, <https://www.rfc-editor.org/rfc/rfc5925>.
+
+   [RFC7525]  Sheffer, Y., Holz, R., and P. Saint-Andre,
+              "Recommendations for Secure Use of Transport Layer
+              Security (TLS) and Datagram Transport Layer Security
+              (DTLS)", RFC 7525, DOI 10.17487/RFC7525, May 2015,
+              <https://www.rfc-editor.org/rfc/rfc7525>.
+
+   [RFC793]   Postel, J., "Transmission Control Protocol", RFC 793,
+              DOI 10.17487/RFC0793, September 1981,
+              <https://www.rfc-editor.org/rfc/rfc793>.
+
+   [RFC8253]  Lopez, D., Gonzalez de Dios, O., Wu, Q., and D. Dhody,
+              "PCEPS: Usage of TLS to Provide a Secure Transport for the
+              Path Computation Element Communication Protocol (PCEP)",
+              RFC 8253, DOI 10.17487/RFC8253, October 2017,
+              <https://www.rfc-editor.org/rfc/rfc8253>.
+
+Acknowledgments
+
+   This document is the result of studying HTTP Over TLS RFC2818 and
+   drawing parallels from PCEPS RFC8253 , leading to the specification
+   for BMP over TLS (BMPS).
+
+   We are grateful to the contributors of the RFCs referenced in the
+   References section.  Their work has been instrumental in shaping and
+   inspiring the development of this specification.
+
+Author's Address
+
+   Hemant Sharma
+   Vodafone
+   Email: hemant.sharma@vodafone.com
