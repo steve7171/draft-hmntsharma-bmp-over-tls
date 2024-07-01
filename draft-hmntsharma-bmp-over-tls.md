@@ -122,7 +122,6 @@ The BMP over TLS (BMPS) is RECOMMENDED as an alternative mechanism to safeguard 
 
 # Security Considerations
 
-
 The BMPS implementation increases computational demands due to continuous encryption and decryption processes, resulting in high CPU utilization and potential vulnerability to denial-of-service attacks.
 
 The TLS cipher suites that provide only data integrity validation without encryption SHOULD NOT be used by default.
