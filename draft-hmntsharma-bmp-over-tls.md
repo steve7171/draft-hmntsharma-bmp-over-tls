@@ -76,9 +76,9 @@ This document describes how to utilize TLS to secure BMP sessions between a moni
 
 ## Operational Summary
 
-The operation of BMPS is virtually the same as the original BMP specification defined in  RFC7854 , but with an additional layer of security using TLS.
+The operation of BMPS is virtually the same as the original BMP specification defined in {{RFC7854}}, but with an additional layer of security using TLS.
 
-In BMPS, the BMP station functions as the TLS server, while routers act as TLS clients. Following the completion of the TCP three-way handshake, as defined in  {{Section 3.4 of RFC793}} , each router, functioning as a TLS client, initiates a TLS handshake with the BMP monitoring station, acting as the TLS server. Once the TLS connection is successfully established, routers can immediately start transmitting BMP messages, as there is no separate BMP initiation or handshake phase.
+In BMPS, the BMP station functions as the TLS server, while routers act as TLS clients. Following the completion of the TCP three-way handshake, as defined in {{Section 3.4 of RFC793}}, each router, functioning as a TLS client, initiates a TLS handshake with the BMP monitoring station, acting as the TLS server. Once the TLS connection is successfully established, routers can immediately start transmitting BMP messages, as there is no separate BMP initiation or handshake phase.
 
 The following steps summarize the operational flow of BMPS:
 
