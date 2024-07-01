@@ -46,7 +46,7 @@ informative:
 
 --- abstract
 
-The BGP Monitoring Protocol (BMP) defines the communication between a BMP station and multiple routers. This document describes **BMP over TLS**, which uses Transport Layer Security (TLS) to ensure secure transport between the router and the BMP monitoring station. It updates RFC 7854 regarding BMP session establishment and termination.
+The BGP Monitoring Protocol (BMP) defines the communication between a BMP station and multiple routers. This document describes BMP over TLS, which uses Transport Layer Security (TLS) to ensure secure transport between the router and the BMP monitoring station. It updates RFC 7854 regarding BMP session establishment and termination.
 
 --- middle
 
@@ -66,7 +66,7 @@ Additionally, a recent draft proposal, draft-hmntsharma-bmp-tcp-ao, titled "TCP-
 
 Alternatively, Transport Layer Security (TLS), offers endpoint authentication, data encryption, and data integrity defined in The Transport Layer Security (TLS) Protocol Version 1.2  RFC5246  and The Transport Layer Security (TLS) Protocol Version 1.3  RFC8446 .
 
-This document describes how to utilize TLS to secure BMP sessions between a monitoring station (acting as the server) and a router (acting as the client). Unlike BGP, where either side can act as the server, BMP's role distinction simplifies the implementation of TLS in a client-server model. Henceforth, the term **BMP over TLS** will be referred to as **BMPS**.
+This document describes how to utilize TLS to secure BMP sessions between a monitoring station (acting as the server) and a router (acting as the client). Unlike BGP, where either side can act as the server, BMP's role distinction simplifies the implementation of TLS in a client-server model. Henceforth, the term BMP over TLS will be referred to as BMPS.
 
 
 # BMP over TLS (BMPS)
