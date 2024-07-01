@@ -8,7 +8,7 @@ on:
     inputs:
       email:
         description: "Submitter email"
-        default: "hemant.sharma@vodafone.com"
+        default: ""
         type: string
 
 jobs:
