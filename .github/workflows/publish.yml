@@ -4,12 +4,12 @@ on:
   push:
     tags:
       - "draft-*"
-  workflow_dispatch:
-    inputs:
-      email:
-        description: "Submitter email"
-        default: "hemant.sharma@vodafone.com"
-        type: string
+  #workflow_dispatch:
+  #  inputs:
+  #    email:
+  #      description: "Submitter email"
+  #      default: "hemant.sharma@vodafone.com"
+  #      type: string
 
 jobs:
   build:
@@ -17,7 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: "Checkout"
-      uses: actions/checkout@v4
+      #uses: actions/checkout@v4
+      uses: actions/checkout@v3
 
     # See https://github.com/actions/checkout/issues/290
     - name: "Get Tag Annotations"
@@ -28,7 +29,8 @@ jobs:
       run: date -u "+date=%FT%T" >>"$GITHUB_OUTPUT"
 
     - name: "Caching"
-      uses: actions/cache@v4
+      #uses: actions/cache@v4
+      uses: actions/cache@v3
       with:
         path: |
           .refcache
@@ -47,7 +49,8 @@ jobs:
     - name: "Upload to Datatracker"
       uses: martinthomson/i-d-template@v1
       with:
-        make: upload "UPLOAD_EMAIL=${{ inputs.email }}"
+        #make: upload "UPLOAD_EMAIL=${{ inputs.email }}"
+        make: upload
 
     - name: "Archive Submitted Drafts"
       uses: actions/upload-artifact@v3
