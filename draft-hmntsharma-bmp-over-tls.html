@@ -1164,7 +1164,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-requirements-language">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-requirements-language" class="section-name selfRef">Requirements Language</a>
       </h2>
-<p id="section-1-1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 RFC2119 RFC8174 when, and only when, they appear in all capitals, as shown here.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="cite xref">RFC8174</a>]</span> when, and only when, they appear in all capitals, as shown here.<a href="#section-1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="introduction">
@@ -1172,7 +1172,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-introduction">
 <a href="#section-2" class="section-number selfRef">2. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-2-1">The BGP Monitoring Protocol (BMP), as defined in  RFC7854 , facilitates communication between routers and a BMP station. Keeping this communication secure is important because it includes sharing sensitive information about BGP peers and monitored prefixes.<a href="#section-2-1" class="pilcrow">¶</a></p>
+<p id="section-2-1">The BGP Monitoring Protocol (BMP), as defined in <span>[<a href="#RFC7854" class="cite xref">RFC7854</a>]</span>, facilitates communication between routers and a BMP station. Keeping this communication secure is important because it includes sharing sensitive information about BGP peers and monitored prefixes.<a href="#section-2-1" class="pilcrow">¶</a></p>
 <p id="section-2-2">The  Section 11 of RFC7854 , "Security Considerations" acknowledges that while routes in public networks are generally not confidential, BGP is also utilized in private L3VPN  RFC4364  networks where confidentiality is crucial. It highlights that without mutual authentication through secure transport mechanisms, the channel is vulnerable to various attacks and recommends using IPSec  RFC4303  in tunnel mode with pre-shared keys for enhanced security in such scenarios.<a href="#section-2-2" class="pilcrow">¶</a></p>
 <p id="section-2-3">Additionally, a recent draft proposal, draft-hmntsharma-bmp-tcp-ao, titled "TCP-AO Protection for BGP Monitoring Protocol (BMP)" suggests an alternative approach using the TCP Authentication Option  RFC5925 . This method authenticates the endpoints of the TCP session, thereby safeguarding its integrity. TCP-AO is beneficial in situations where full IPSec security may not be feasible, although unlike IPSec, it does not encrypt the session traffic.<a href="#section-2-3" class="pilcrow">¶</a></p>
 <p id="section-2-4">Alternatively, Transport Layer Security (TLS), offers endpoint authentication, data encryption, and data integrity defined in The Transport Layer Security (TLS) Protocol Version 1.2  RFC5246  and The Transport Layer Security (TLS) Protocol Version 1.3  RFC8446 .<a href="#section-2-4" class="pilcrow">¶</a></p>
