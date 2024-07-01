@@ -43,6 +43,8 @@ informative:
  RFC793:
  RFC5925:
  RFC7525:
+ RFC4303:
+ RFC4364:
  RFC8253:
  draft-hmntsharma-bmp-tcp-ao:
 
@@ -65,7 +67,7 @@ The BGP Monitoring Protocol (BMP), as defined in {{RFC7854}}, facilitates commun
 
 The  {{Section 11 of RFC7854}} , "Security Considerations" acknowledges that while routes in public networks are generally not confidential, BGP is also utilized in private L3VPN {{RFC4364}} networks where confidentiality is crucial. It highlights that without mutual authentication through secure transport mechanisms, the channel is vulnerable to various attacks and recommends using IPSec {{RFC4303}} in tunnel mode with pre-shared keys for enhanced security in such scenarios.
 
-Additionally, a recent draft proposal, draft-hmntsharma-bmp-tcp-ao, titled "TCP-AO Protection for BGP Monitoring Protocol (BMP)" suggests an alternative approach using the TCP Authentication Option {{RFC5925}}. This method authenticates the endpoints of the TCP session, thereby safeguarding its integrity. TCP-AO is beneficial in situations where full IPSec security may not be feasible, although unlike IPSec, it does not encrypt the session traffic.
+Additionally, a recent draft proposal, {{draft-hmntsharma-bmp-tcp-ao}}, titled "TCP-AO Protection for BGP Monitoring Protocol (BMP)" suggests an alternative approach using the TCP Authentication Option {{RFC5925}}. This method authenticates the endpoints of the TCP session, thereby safeguarding its integrity. TCP-AO is beneficial in situations where full IPSec security may not be feasible, although unlike IPSec, it does not encrypt the session traffic.
 
 Alternatively, Transport Layer Security (TLS), offers endpoint authentication, data encryption, and data integrity defined in The Transport Layer Security (TLS) Protocol Version 1.2 {{RFC5246}} and The Transport Layer Security (TLS) Protocol Version 1.3 {{RFC8446}}.
 
