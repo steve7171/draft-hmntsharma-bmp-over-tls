@@ -7,7 +7,7 @@
 <title>BMPS: Transport Layer Security for BGP Monitoring Protocol</title>
 <meta content="Hemant Sharma" name="author">
 <meta content="
-       The BGP Monitoring Protocol (BMP) defines the communication between a BMP station and multiple routers. This document describes  BMP over TLS , which uses Transport Layer Security (TLS) to ensure secure transport between the router and the BMP monitoring station. It updates RFC 7854 regarding BMP session establishment and termination. 
+       The BGP Monitoring Protocol (BMP) defines the communication between a BMP station and multiple routers. This document describes BMP over TLS, which uses Transport Layer Security (TLS) to ensure secure transport between the router and the BMP monitoring station. It updates RFC 7854 regarding BMP session establishment and termination. 
     " name="description">
 <meta content="xml2rfc 3.21.0" name="generator">
 <meta content="BMP Security" name="keyword">
@@ -1027,11 +1027,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">BMP over TLS (BMPS)</td>
-<td class="right">June 2024</td>
+<td class="right">July 2024</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Sharma</td>
-<td class="center">Expires 1 January 2025</td>
+<td class="center">Expires 2 January 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1047,12 +1047,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="https://www.rfc-editor.org/rfc/rfc7854" class="eref">7854</a> (if approved)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-06-30" class="published">30 June 2024</time>
+<time datetime="2024-07-01" class="published">1 July 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-01-01">1 January 2025</time></dd>
+<dd class="expires"><time datetime="2025-01-02">2 January 2025</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1065,7 +1065,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <h1 id="title">BMPS: Transport Layer Security for BGP Monitoring Protocol</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">The BGP Monitoring Protocol (BMP) defines the communication between a BMP station and multiple routers. This document describes <strong>BMP over TLS</strong>, which uses Transport Layer Security (TLS) to ensure secure transport between the router and the BMP monitoring station. It updates RFC 7854 regarding BMP session establishment and termination.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">The BGP Monitoring Protocol (BMP) defines the communication between a BMP station and multiple routers. This document describes BMP over TLS, which uses Transport Layer Security (TLS) to ensure secure transport between the router and the BMP monitoring station. It updates RFC 7854 regarding BMP session establishment and termination.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <div id="status-of-memo">
 <section id="section-boilerplate.1">
@@ -1086,7 +1086,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 1 January 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 2 January 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1176,7 +1176,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="section-2-2">The  Section 11 of RFC7854 , "Security Considerations" acknowledges that while routes in public networks are generally not confidential, BGP is also utilized in private L3VPN  RFC4364  networks where confidentiality is crucial. It highlights that without mutual authentication through secure transport mechanisms, the channel is vulnerable to various attacks and recommends using IPSec  RFC4303  in tunnel mode with pre-shared keys for enhanced security in such scenarios.<a href="#section-2-2" class="pilcrow">¶</a></p>
 <p id="section-2-3">Additionally, a recent draft proposal, draft-hmntsharma-bmp-tcp-ao, titled "TCP-AO Protection for BGP Monitoring Protocol (BMP)" suggests an alternative approach using the TCP Authentication Option  RFC5925 . This method authenticates the endpoints of the TCP session, thereby safeguarding its integrity. TCP-AO is beneficial in situations where full IPSec security may not be feasible, although unlike IPSec, it does not encrypt the session traffic.<a href="#section-2-3" class="pilcrow">¶</a></p>
 <p id="section-2-4">Alternatively, Transport Layer Security (TLS), offers endpoint authentication, data encryption, and data integrity defined in The Transport Layer Security (TLS) Protocol Version 1.2  RFC5246  and The Transport Layer Security (TLS) Protocol Version 1.3  RFC8446 .<a href="#section-2-4" class="pilcrow">¶</a></p>
-<p id="section-2-5">This document describes how to utilize TLS to secure BMP sessions between a monitoring station (acting as the server) and a router (acting as the client). Unlike BGP, where either side can act as the server, BMP's role distinction simplifies the implementation of TLS in a client-server model. Henceforth, the term <strong>BMP over TLS</strong> will be referred to as <strong>BMPS</strong>.<a href="#section-2-5" class="pilcrow">¶</a></p>
+<p id="section-2-5">This document describes how to utilize TLS to secure BMP sessions between a monitoring station (acting as the server) and a router (acting as the client). Unlike BGP, where either side can act as the server, BMP's role distinction simplifies the implementation of TLS in a client-server model. Henceforth, the term BMP over TLS will be referred to as BMPS.<a href="#section-2-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="bmp-over-tls-bmps">

@@ -4,9 +4,9 @@
 
 GROW                                                           H. Sharma
 Internet-Draft                                                  Vodafone
-Updates: 7854 (if approved)                                 30 June 2024
+Updates: 7854 (if approved)                                  1 July 2024
 Intended status: Informational                                          
-Expires: 1 January 2025
+Expires: 2 January 2025
 
 
        BMPS: Transport Layer Security for BGP Monitoring Protocol
@@ -15,8 +15,8 @@ Expires: 1 January 2025
 Abstract
 
    The BGP Monitoring Protocol (BMP) defines the communication between a
-   BMP station and multiple routers.  This document describes *BMP over
-   TLS*, which uses Transport Layer Security (TLS) to ensure secure
+   BMP station and multiple routers.  This document describes BMP over
+   TLS, which uses Transport Layer Security (TLS) to ensure secure
    transport between the router and the BMP monitoring station.  It
    updates RFC 7854 regarding BMP session establishment and termination.
 
@@ -35,7 +35,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 January 2025.
+   This Internet-Draft will expire on 2 January 2025.
 
 Copyright Notice
 
@@ -105,8 +105,8 @@ Table of Contents
    between a monitoring station (acting as the server) and a router
    (acting as the client).  Unlike BGP, where either side can act as the
    server, BMP's role distinction simplifies the implementation of TLS
-   in a client-server model.  Henceforth, the term *BMP over TLS* will
-   be referred to as *BMPS*.
+   in a client-server model.  Henceforth, the term BMP over TLS will be
+   referred to as BMPS.
 
 3.  BMP over TLS (BMPS)
 
