@@ -128,19 +128,15 @@ Table of Contents
 
    The following steps summarize the operational flow of BMPS:
 
-   1.  Configure a TLS client profile on the router(s).
+   1.  The router initiates and completes a TCP handshake.
 
-   2.  Configure a TLS server profile on the BMP monitoring station(s).
-
-   3.  The router initiates and completes a TCP handshake.
-
-   4.  The router initiates and completes a TLS handshake with the BMP
+   2.  The router initiates and completes a TLS handshake with the BMP
        monitoring station.
 
-   5.  BMP messages are transmitted by the router according to
+   3.  BMP messages are transmitted by the router according to
        [RFC7854].
 
-   A BMPS session ends when the underlying TCP session utilizing TLS, is
+   A BMPS session ends when the underlying TCP or TLS session is
    terminated for any reason.
 
    It is RECOMMENDED to adhere to the guidelines in [RFC7525] by
