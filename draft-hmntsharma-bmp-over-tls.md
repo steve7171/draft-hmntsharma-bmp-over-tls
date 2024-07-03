@@ -89,8 +89,7 @@ The following steps summarize the operational flow of BMPS:
 
 A BMPS session ends when the underlying TCP or TLS session is terminated for any reason.
 
-It is RECOMMENDED to adhere to the guidelines in {{RFC7525}} by employing Strict TLS, ensuring that only TLS-secured BMP sessions are permitted once the BMP station is configured with a TLS server profile. Furthermore, it is advised to maintain the same TCP port for incoming BMP session requests on the BMP station after the TLS server profile is applied, for simplified operation.
-
+The monitoring station MUST listen on separate ports for BMP (non-TLS) and BMPS (TLS) sessions. This approach also offers a simplified "make before break" migration from BMP to BMPS.
 
 ## Transport Layer Security
 
@@ -112,6 +111,8 @@ The operational flow of BMP over TLS is similar to standard TLS operations:
 
 TLS version 1.3, defined in {{RFC8446}}, streamlines the handshake process and supports more robust cipher suites compared to TLS version 1.2 {{RFC5246}}, enhancing both speed and security. However, widespread support for TLS 1.3 remains limited, with many systems still primarily utilizing TLS 1.2.
 
+The BMPS is REQUIRED to support TLS 1.2 or higher to ensure secure communication.
+
 
 ## Operational Recommendations for BMPS
 
@@ -124,7 +125,7 @@ The BMPS implementation increases computational demands due to continuous encryp
 
 The TLS cipher suites that provide only data integrity validation without encryption SHOULD NOT be used by default.
 
-It is RECOMMENDED to adhere to the Recommendations for Secure Use of Transport Layer Security (TLS) and Datagram Transport Layer Security (DTLS) as defined in {{RFC7525}}.
+The BMPS implementation SHOULD follow the best practices and recommendations for using TLS, as per the Recommendations for Secure Use of Transport Layer Security (TLS) and Datagram Transport Layer Security (DTLS) as defined in {{RFC7525}}.
 
 
 # IANA Considerations
