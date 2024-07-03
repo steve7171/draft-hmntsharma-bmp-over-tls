@@ -4,9 +4,9 @@
 
 GROW                                                           H. Sharma
 Internet-Draft                                                  Vodafone
-Updates: 7854 (if approved)                                  1 July 2024
+Updates: 7854 (if approved)                                  3 July 2024
 Intended status: Informational                                          
-Expires: 2 January 2025
+Expires: 4 January 2025
 
 
        BMPS: Transport Layer Security for BGP Monitoring Protocol
@@ -36,7 +36,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 January 2025.
+   This Internet-Draft will expire on 4 January 2025.
 
 Copyright Notice
 
@@ -221,14 +221,16 @@ Table of Contents
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/rfc/rfc2119>.
 
-   [RFC2818]  Rescorla, E., "HTTP Over TLS", RFC 2818,
-              DOI 10.17487/RFC2818, May 2000,
-              <https://www.rfc-editor.org/rfc/rfc2818>.
-
    [RFC5246]  Dierks, T. and E. Rescorla, "The Transport Layer Security
               (TLS) Protocol Version 1.2", RFC 5246,
               DOI 10.17487/RFC5246, August 2008,
               <https://www.rfc-editor.org/rfc/rfc5246>.
+
+   [RFC7525]  Sheffer, Y., Holz, R., and P. Saint-Andre,
+              "Recommendations for Secure Use of Transport Layer
+              Security (TLS) and Datagram Transport Layer Security
+              (DTLS)", RFC 7525, DOI 10.17487/RFC7525, May 2015,
+              <https://www.rfc-editor.org/rfc/rfc7525>.
 
    [RFC7854]  Scudder, J., Ed., Fernando, R., and S. Stuart, "BGP
               Monitoring Protocol (BMP)", RFC 7854,
@@ -245,6 +247,10 @@ Table of Contents
 
 6.2.  Informative References
 
+   [RFC2818]  Rescorla, E., "HTTP Over TLS", RFC 2818,
+              DOI 10.17487/RFC2818, May 2000,
+              <https://www.rfc-editor.org/rfc/rfc2818>.
+
    [RFC4303]  Kent, S., "IP Encapsulating Security Payload (ESP)",
               RFC 4303, DOI 10.17487/RFC4303, December 2005,
               <https://www.rfc-editor.org/rfc/rfc4303>.
@@ -256,12 +262,6 @@ Table of Contents
    [RFC5925]  Touch, J., Mankin, A., and R. Bonica, "The TCP
               Authentication Option", RFC 5925, DOI 10.17487/RFC5925,
               June 2010, <https://www.rfc-editor.org/rfc/rfc5925>.
-
-   [RFC7525]  Sheffer, Y., Holz, R., and P. Saint-Andre,
-              "Recommendations for Secure Use of Transport Layer
-              Security (TLS) and Datagram Transport Layer Security
-              (DTLS)", RFC 7525, DOI 10.17487/RFC7525, May 2015,
-              <https://www.rfc-editor.org/rfc/rfc7525>.
 
    [RFC793]   Postel, J., "Transmission Control Protocol", RFC 793,
               DOI 10.17487/RFC0793, September 1981,
