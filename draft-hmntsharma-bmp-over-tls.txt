@@ -3,9 +3,9 @@
 
 
 GROW                                                           H. Sharma
-Internet-Draft                                                  Vodafone
-Updates: 7854 (if approved)                                  3 July 2024
-Intended status: Informational                                          
+Internet-Draft                                                 S. Clarke
+Updates: 7854 (if approved)                                     Vodafone
+Intended status: Informational                               3 July 2024
 Expires: 4 January 2025
 
 
@@ -63,7 +63,7 @@ Table of Contents
      6.1.  Normative References
      6.2.  Informative References
    Acknowledgments
-   Author's Address
+   Authors' Addresses
 
 1.  Requirements Language
 
@@ -280,8 +280,13 @@ Acknowledgments
    References section.  Their work has been instrumental in shaping and
    inspiring the development of this specification.
 
-Author's Address
+Authors' Addresses
 
    Hemant Sharma
    Vodafone
    Email: hemant.sharma@vodafone.com
+
+
+   Steven Clarke
+   Vodafone
+   Email: steven.clarke@vodafone.com
