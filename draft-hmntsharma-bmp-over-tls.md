@@ -102,7 +102,7 @@ In regular TLS connections, the server has a TLS certificate along with a public
 
 For BMP over TLS (BMPS), it is REQUIRED to implement mutual TLS (mTLS), wherein both the server (BMP station) and the client (network element) have certificates, and both sides authenticate each other using their respective public/private key pairs.
 
-The organizations implementing mTLS SHOULD have their own self-signed "root" certificate. The certificates issued to both the BMP station and NEs should correspond to this root certificate.
+A self-signed "root" TLS certificate is REQUIRED for mTLS, allowing an organization to act as its own certificate authority. The certificates issued to both the BMP station and NEs should correspond to this root certificate.
 
 The operational flow of BMP over TLS is similar to standard TLS operations:
 
