@@ -1218,7 +1218,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         </h3>
 <p id="section-3.2-1">In regular TLS connections, the server has a TLS certificate along with a public/private key pair, whereas the client does not.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
 <p id="section-3.2-2">For BMP over TLS (BMPS), it is REQUIRED to implement mutual TLS (mTLS), wherein both the server (BMP station) and the client (network element) have certificates, and both sides authenticate each other using their respective public/private key pairs.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
-<p id="section-3.2-3">The organizations implementing mTLS SHOULD have their own self-signed "root" certificate. The certificates issued to both the BMP station and NEs should correspond to this root certificate.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
+<p id="section-3.2-3">A self-signed "root" TLS certificate is REQUIRED for mTLS, allowing an organization to act as its own certificate authority. The certificates issued to both the BMP station and NEs should correspond to this root certificate.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
 <p id="section-3.2-4">The operational flow of BMP over TLS is similar to standard TLS operations:<a href="#section-3.2-4" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-3.2-5">
 <li id="section-3.2-5.1">
