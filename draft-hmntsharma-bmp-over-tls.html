@@ -1208,7 +1208,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </li>
         </ol>
 <p id="section-3.1-5">A BMPS session ends when the underlying TCP or TLS session is terminated for any reason.<a href="#section-3.1-5" class="pilcrow">¶</a></p>
-<p id="section-3.1-6">The monitoring station MUST listen on separate ports for BMP (non-TLS) and BMPS (TLS) sessions. This approach also offers a simplified "make before break" migration from BMP to BMPS.<a href="#section-3.1-6" class="pilcrow">¶</a></p>
+<p id="section-3.1-6">The <span><a href="https://rfc-editor.org/rfc/rfc7854#section-3.2" class="relref">Section 3.2</a> of [<a href="#RFC7854" class="cite xref">RFC7854</a>]</span> states, "No BMP message is ever sent from the monitoring station to the router." To adhere to this standard, the monitoring station MUST listen on separate ports for BMP (non-TLS) and BMPS (TLS) sessions. This approach also offers a simplified "make before break" migration from BMP to BMPS.<a href="#section-3.1-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="transport-layer-security">
@@ -1340,12 +1340,8 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <span class="refAuthor">Postel, J.</span>, <span class="refTitle">"Transmission Control Protocol"</span>, <span class="seriesInfo">RFC 793</span>, <span class="seriesInfo">DOI 10.17487/RFC0793</span>, <time datetime="1981-09" class="refDate">September 1981</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc793">https://www.rfc-editor.org/rfc/rfc793</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8253">[RFC8253]</dt>
-        <dd>
-<span class="refAuthor">Lopez, D.</span>, <span class="refAuthor">Gonzalez de Dios, O.</span>, <span class="refAuthor">Wu, Q.</span>, and <span class="refAuthor">D. Dhody</span>, <span class="refTitle">"PCEPS: Usage of TLS to Provide a Secure Transport for the Path Computation Element Communication Protocol (PCEP)"</span>, <span class="seriesInfo">RFC 8253</span>, <span class="seriesInfo">DOI 10.17487/RFC8253</span>, <time datetime="2017-10" class="refDate">October 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8253">https://www.rfc-editor.org/rfc/rfc8253</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC9110">[RFC9110]</dt>
       <dd>
-<span class="refAuthor">Fielding, R., Ed.</span>, <span class="refAuthor">Nottingham, M., Ed.</span>, and <span class="refAuthor">J. Reschke, Ed.</span>, <span class="refTitle">"HTTP Semantics"</span>, <span class="seriesInfo">STD 97</span>, <span class="seriesInfo">RFC 9110</span>, <span class="seriesInfo">DOI 10.17487/RFC9110</span>, <time datetime="2022-06" class="refDate">June 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9110">https://www.rfc-editor.org/rfc/rfc9110</a>&gt;</span>. </dd>
+<span class="refAuthor">Lopez, D.</span>, <span class="refAuthor">Gonzalez de Dios, O.</span>, <span class="refAuthor">Wu, Q.</span>, and <span class="refAuthor">D. Dhody</span>, <span class="refTitle">"PCEPS: Usage of TLS to Provide a Secure Transport for the Path Computation Element Communication Protocol (PCEP)"</span>, <span class="seriesInfo">RFC 8253</span>, <span class="seriesInfo">DOI 10.17487/RFC8253</span>, <time datetime="2017-10" class="refDate">October 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8253">https://www.rfc-editor.org/rfc/rfc8253</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -1357,8 +1353,8 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-acknowledgments">
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
-<p id="appendix-A-1">This document is the result of studying HTTP Over TLS <span>[<a href="#RFC2818" class="cite xref">RFC2818</a>]</span> <span>[<a href="#RFC9110" class="cite xref">RFC9110</a>]</span> and drawing parallels from PCEPS <span>[<a href="#RFC8253" class="cite xref">RFC8253</a>]</span>, leading to the specification for BMP over TLS (BMPS).<a href="#appendix-A-1" class="pilcrow">¶</a></p>
-<p id="appendix-A-2">We are grateful to the contributors of the RFCs referenced in the References section. Their work has been instrumental in shaping and inspiring the development of this specification.<a href="#appendix-A-2" class="pilcrow">¶</a></p>
+<p id="appendix-A-1">This document is the result of studying all the referenced RFCs and drawing some parallels from PCEPS <span>[<a href="#RFC8253" class="cite xref">RFC8253</a>]</span>, leading to the specification for BMP over TLS (BMPS).<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<p id="appendix-A-2">We are grateful to the contributors of the RFCs listed in the References section. Their work has been instrumental in shaping and inspiring the development of this specification.<a href="#appendix-A-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">
