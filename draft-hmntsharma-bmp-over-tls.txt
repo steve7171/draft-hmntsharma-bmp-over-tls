@@ -252,6 +252,13 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-hmntsharma-
               bmp-tcp-ao-03>.
 
+   [I-D.hmntsharma-bmp-tcp-ao]
+              Sharma, H. and J. Haas, "TCP-AO Protection for BGP
+              Monitoring Protocol (BMP)", Work in Progress, Internet-
+              Draft, draft-hmntsharma-bmp-tcp-ao-03, 11 April 2024,
+              <https://datatracker.ietf.org/doc/html/draft-hmntsharma-
+              bmp-tcp-ao-03>.
+
    [RFC2818]  Rescorla, E., "HTTP Over TLS", RFC 2818,
               DOI 10.17487/RFC2818, May 2000,
               <https://www.rfc-editor.org/rfc/rfc2818>.
