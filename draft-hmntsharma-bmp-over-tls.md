@@ -51,7 +51,6 @@ informative:
  RFC4364:
  RFC5925:
  RFC8253:
- RFC9110:
 
 
 --- abstract
@@ -95,7 +94,7 @@ The following steps summarize the operational flow of BMPS:
 
 A BMPS session ends when the underlying TCP or TLS session is terminated for any reason.
 
-The monitoring station MUST listen on separate ports for BMP (non-TLS) and BMPS (TLS) sessions. This approach also offers a simplified "make before break" migration from BMP to BMPS.
+The {{Section 3.2 of RFC7854}} states, "No BMP message is ever sent from the monitoring station to the router." To adhere to this standard, the monitoring station MUST listen on separate ports for BMP (non-TLS) and BMPS (TLS) sessions. This approach also offers a simplified "make before break" migration from BMP to BMPS.
 
 ## Transport Layer Security
 
@@ -144,6 +143,6 @@ This document has no IANA actions.
 # Acknowledgments
 {:numbered="false"}
 
-This document is the result of studying HTTP Over TLS {{RFC2818}} {{RFC9110}} and drawing parallels from PCEPS {{RFC8253}}, leading to the specification for BMP over TLS (BMPS).
+This document is the result of studying all the referenced RFCs and drawing some parallels from PCEPS {{RFC8253}}, leading to the specification for BMP over TLS (BMPS).
 
-We are grateful to the contributors of the RFCs referenced in the References section. Their work has been instrumental in shaping and inspiring the development of this specification.
+We are grateful to the contributors of the RFCs listed in the References section. Their work has been instrumental in shaping and inspiring the development of this specification.
