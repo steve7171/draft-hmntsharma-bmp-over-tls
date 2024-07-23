@@ -89,9 +89,9 @@ Table of Contents
    tunnel mode with pre-shared keys for enhanced security in such
    scenarios.
 
-   Additionally, a recent draft proposal, [TCP-AO] draft-hmntsharma-bmp-
-   tcp-ao, titled "TCP-AO Protection for BGP Monitoring Protocol (BMP)"
-   suggests an alternative approach using the TCP Authentication Option
+   Additionally, a recent draft proposal, [draft-hmntsharma-bmp-tcp-ao],
+   titled "TCP-AO Protection for BGP Monitoring Protocol (BMP)" suggests
+   an alternative approach using the TCP Authentication Option
    [RFC5925].  This method authenticates the endpoints of the TCP
    session, thereby safeguarding its integrity.  TCP-AO is beneficial in
    situations where full IPSec security may not be feasible, although
@@ -245,6 +245,13 @@ Table of Contents
 
 6.2.  Informative References
 
+   [draft-hmntsharma-bmp-tcp-ao]
+              Sharma, H. and J. Haas, "TCP-AO Protection for BGP
+              Monitoring Protocol (BMP)", Work in Progress, Internet-
+              Draft, draft-hmntsharma-bmp-tcp-ao-03, 11 April 2024,
+              <https://datatracker.ietf.org/doc/html/draft-hmntsharma-
+              bmp-tcp-ao-03>.
+
    [I-D.hmntsharma-bmp-tcp-ao]
               Sharma, H. and J. Haas, "TCP-AO Protection for BGP
               Monitoring Protocol (BMP)", Work in Progress, Internet-
@@ -277,12 +284,6 @@ Table of Contents
               Path Computation Element Communication Protocol (PCEP)",
               RFC 8253, DOI 10.17487/RFC8253, October 2017,
               <https://www.rfc-editor.org/rfc/rfc8253>.
-
-   [TCP-AO]   Sharma, H. and J. Haas, "TCP-AO Protection for BGP
-              Monitoring Protocol (BMP)", Work in Progress, Internet-
-              Draft, draft-hmntsharma-bmp-tcp-ao-03, 11 April 2024,
-              <https://datatracker.ietf.org/doc/html/draft-hmntsharma-
-              bmp-tcp-ao-03>.
 
 Acknowledgments
 
