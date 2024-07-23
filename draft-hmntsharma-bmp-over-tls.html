@@ -8,7 +8,7 @@
 <meta content="Hemant Sharma" name="author">
 <meta content="Steven Clarke" name="author">
 <meta content="
-       The BGP Monitoring Protocol (BMP) defines the communication between a BMP station and multiple routers. This document describes BMP over TLS, which uses Transport Layer Security (TLS) to ensure secure transport between the router and the BMP monitoring station. It updates   regarding BMP session establishment and termination. 
+       The BGP Monitoring Protocol (BMP) defines the communication between a BMP station and multiple routers, referred to as network elements (NEs). This document describes BMP over TLS, which uses Transport Layer Security (TLS) to ensure secure transport between the NE and the BMP monitoring station. It updates   regarding BMP session establishment and termination. 
     " name="description">
 <meta content="xml2rfc 3.22.0" name="generator">
 <meta content="BMP Security" name="keyword">
@@ -1031,7 +1031,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Sharma &amp; Clarke</td>
-<td class="center">Expires 4 January 2025</td>
+<td class="center">Expires 24 January 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1047,12 +1047,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="https://www.rfc-editor.org/rfc/rfc7854" class="eref">7854</a> (if approved)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-07-03" class="published">3 July 2024</time>
+<time datetime="2024-07-23" class="published">23 July 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-01-04">4 January 2025</time></dd>
+<dd class="expires"><time datetime="2025-01-24">24 January 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1069,7 +1069,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <h1 id="title">BMPS: Transport Layer Security for BGP Monitoring Protocol</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">The BGP Monitoring Protocol (BMP) defines the communication between a BMP station and multiple routers. This document describes BMP over TLS, which uses Transport Layer Security (TLS) to ensure secure transport between the router and the BMP monitoring station. It updates <span>[<a href="#RFC7854" class="cite xref">RFC7854</a>]</span> regarding BMP session establishment and termination.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">The BGP Monitoring Protocol (BMP) defines the communication between a BMP station and multiple routers, referred to as network elements (NEs). This document describes BMP over TLS, which uses Transport Layer Security (TLS) to ensure secure transport between the NE and the BMP monitoring station. It updates <span>[<a href="#RFC7854" class="cite xref">RFC7854</a>]</span> regarding BMP session establishment and termination.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <div id="status-of-memo">
 <section id="section-boilerplate.1">
@@ -1090,7 +1090,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 4 January 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 24 January 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1176,11 +1176,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-introduction">
 <a href="#section-2" class="section-number selfRef">2. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-2-1">The BGP Monitoring Protocol (BMP), as defined in <span>[<a href="#RFC7854" class="cite xref">RFC7854</a>]</span>, facilitates communication between routers and a BMP station. Keeping this communication secure is important because it includes sharing sensitive information about BGP peers and monitored prefixes.<a href="#section-2-1" class="pilcrow">¶</a></p>
+<p id="section-2-1">The BGP Monitoring Protocol (BMP), as defined in <span>[<a href="#RFC7854" class="cite xref">RFC7854</a>]</span>, facilitates communication between NEs and a BMP station. Keeping this communication secure is important because it includes sharing sensitive information about BGP peers and monitored prefixes.<a href="#section-2-1" class="pilcrow">¶</a></p>
 <p id="section-2-2">The  <span><a href="https://rfc-editor.org/rfc/rfc7854#section-11" class="relref">Section 11</a> of [<a href="#RFC7854" class="cite xref">RFC7854</a>]</span> , "Security Considerations" acknowledges that while routes in public networks are generally not confidential, BGP is also utilized in private L3VPN <span>[<a href="#RFC4364" class="cite xref">RFC4364</a>]</span> networks where confidentiality is crucial. It highlights that without mutual authentication through secure transport mechanisms, the channel is vulnerable to various attacks and recommends using IPSec <span>[<a href="#RFC4303" class="cite xref">RFC4303</a>]</span> in tunnel mode with pre-shared keys for enhanced security in such scenarios.<a href="#section-2-2" class="pilcrow">¶</a></p>
 <p id="section-2-3">Additionally, a recent draft proposal, draft-hmntsharma-bmp-tcp-ao, titled "TCP-AO Protection for BGP Monitoring Protocol (BMP)" suggests an alternative approach using the TCP Authentication Option <span>[<a href="#RFC5925" class="cite xref">RFC5925</a>]</span>. This method authenticates the endpoints of the TCP session, thereby safeguarding its integrity. TCP-AO is beneficial in situations where full IPSec security may not be feasible, although unlike IPSec, it does not encrypt the session traffic.<a href="#section-2-3" class="pilcrow">¶</a></p>
 <p id="section-2-4">Alternatively, Transport Layer Security (TLS), offers endpoint authentication, data encryption, and data integrity defined in The Transport Layer Security (TLS) Protocol Version 1.2 <span>[<a href="#RFC5246" class="cite xref">RFC5246</a>]</span> and The Transport Layer Security (TLS) Protocol Version 1.3 <span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span>.<a href="#section-2-4" class="pilcrow">¶</a></p>
-<p id="section-2-5">This document describes how to utilize TLS to secure BMP sessions between a monitoring station (acting as the server) and a router (acting as the client). Unlike BGP, where either side can act as the server, BMP's role distinction simplifies the implementation of TLS in a client-server model. Henceforth, the term BMP over TLS will be referred to as BMPS.<a href="#section-2-5" class="pilcrow">¶</a></p>
+<p id="section-2-5">This document describes how to utilize TLS to secure BMP sessions between a monitoring station (acting as the server) and a Network Element (acting as the client). Unlike BGP, where either side can act as the server, BMP's role distinction simplifies the implementation of TLS in a client-server model. Henceforth, the term BMP over TLS will be referred to as BMPS.<a href="#section-2-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="bmp-over-tls-bmps">
@@ -1194,17 +1194,17 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-operational-summary" class="section-name selfRef">Operational Summary</a>
         </h3>
 <p id="section-3.1-1">The operation of BMPS is virtually the same as the original BMP specification defined in <span>[<a href="#RFC7854" class="cite xref">RFC7854</a>]</span>, but with an additional layer of security using TLS.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
-<p id="section-3.1-2">In BMPS, the BMP station functions as the TLS server, while routers act as TLS clients. Following the completion of the TCP three-way handshake, as defined in <span><a href="https://rfc-editor.org/rfc/rfc793#section-3.4" class="relref">Section 3.4</a> of [<a href="#RFC793" class="cite xref">RFC793</a>]</span>, each router, functioning as a TLS client, initiates a TLS handshake with the BMP monitoring station, acting as the TLS server. Once the TLS connection is successfully established, routers can immediately start transmitting BMP messages, as there is no separate BMP initiation or handshake phase.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
+<p id="section-3.1-2">In BMPS, the BMP station functions as the TLS server, while NEs act as TLS clients. Following the completion of the TCP three-way handshake, as defined in <span><a href="https://rfc-editor.org/rfc/rfc793#section-3.4" class="relref">Section 3.4</a> of [<a href="#RFC793" class="cite xref">RFC793</a>]</span>, each NE, functioning as a TLS client, initiates a TLS handshake with the BMP monitoring station, acting as the TLS server. Once the TLS connection is successfully established, NEs can immediately start transmitting BMP messages, as there is no separate BMP initiation or handshake phase.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
 <p id="section-3.1-3">The following steps summarize the operational flow of BMPS:<a href="#section-3.1-3" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-3.1-4">
 <li id="section-3.1-4.1">
-            <p id="section-3.1-4.1.1">The router initiates and completes a TCP handshake.<a href="#section-3.1-4.1.1" class="pilcrow">¶</a></p>
+            <p id="section-3.1-4.1.1">The NE initiates and completes a TCP handshake.<a href="#section-3.1-4.1.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-3.1-4.2">
-            <p id="section-3.1-4.2.1">The router initiates and completes a TLS handshake with the BMP monitoring station.<a href="#section-3.1-4.2.1" class="pilcrow">¶</a></p>
+            <p id="section-3.1-4.2.1">The NE initiates and completes a TLS handshake with the BMP monitoring station.<a href="#section-3.1-4.2.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-3.1-4.3">
-            <p id="section-3.1-4.3.1">BMP messages are transmitted by the router according to <span>[<a href="#RFC7854" class="cite xref">RFC7854</a>]</span>.<a href="#section-3.1-4.3.1" class="pilcrow">¶</a></p>
+            <p id="section-3.1-4.3.1">BMP messages are transmitted by the NE according to <span>[<a href="#RFC7854" class="cite xref">RFC7854</a>]</span>.<a href="#section-3.1-4.3.1" class="pilcrow">¶</a></p>
 </li>
         </ol>
 <p id="section-3.1-5">A BMPS session ends when the underlying TCP or TLS session is terminated for any reason.<a href="#section-3.1-5" class="pilcrow">¶</a></p>
@@ -1217,30 +1217,30 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-transport-layer-security" class="section-name selfRef">Transport Layer Security</a>
         </h3>
 <p id="section-3.2-1">In regular TLS connections, the server has a TLS certificate along with a public/private key pair, whereas the client does not.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
-<p id="section-3.2-2">For BMP over TLS (BMPS), it is REQUIRED to implement mutual TLS (mTLS), wherein both the server (BMP station) and the client (router) have certificates, and both sides authenticate each other using their respective public/private key pairs.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
-<p id="section-3.2-3">The organizations implementing mTLS SHOULD be their own Certification Authority (CA), to create their own self-signed "root" certificate. The certificates issued to both the BMP station and routers should correspond to this root certificate.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
+<p id="section-3.2-2">For BMP over TLS (BMPS), it is REQUIRED to implement mutual TLS (mTLS), wherein both the server (BMP station) and the client (network element) have certificates, and both sides authenticate each other using their respective public/private key pairs.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
+<p id="section-3.2-3">The organizations implementing mTLS SHOULD have their own self-signed "root" certificate. The certificates issued to both the BMP station and NEs should correspond to this root certificate.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
 <p id="section-3.2-4">The operational flow of BMP over TLS is similar to standard TLS operations:<a href="#section-3.2-4" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-3.2-5">
 <li id="section-3.2-5.1">
-            <p id="section-3.2-5.1.1">The router initiates the connection to the BMP station.<a href="#section-3.2-5.1.1" class="pilcrow">¶</a></p>
+            <p id="section-3.2-5.1.1">The NE initiates the connection to the BMP station.<a href="#section-3.2-5.1.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-3.2-5.2">
             <p id="section-3.2-5.2.1">The station presents its TLS certificate.<a href="#section-3.2-5.2.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-3.2-5.3">
-            <p id="section-3.2-5.3.1">The router verifies the station's certificate.<a href="#section-3.2-5.3.1" class="pilcrow">¶</a></p>
+            <p id="section-3.2-5.3.1">The NE verifies the station's certificate.<a href="#section-3.2-5.3.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-3.2-5.4">
-            <p id="section-3.2-5.4.1">The router presents its TLS certificate.<a href="#section-3.2-5.4.1" class="pilcrow">¶</a></p>
+            <p id="section-3.2-5.4.1">The NE presents its TLS certificate.<a href="#section-3.2-5.4.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-3.2-5.5">
-            <p id="section-3.2-5.5.1">The station verifies the router's certificate.<a href="#section-3.2-5.5.1" class="pilcrow">¶</a></p>
+            <p id="section-3.2-5.5.1">The station verifies the NE's certificate.<a href="#section-3.2-5.5.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-3.2-5.6">
             <p id="section-3.2-5.6.1">The TLS connection is established.<a href="#section-3.2-5.6.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-3.2-5.7">
-            <p id="section-3.2-5.7.1">The router begins transmitting BMP data to the station over the encrypted TLS channel.<a href="#section-3.2-5.7.1" class="pilcrow">¶</a></p>
+            <p id="section-3.2-5.7.1">The NE begins transmitting BMP data to the station over the encrypted TLS channel.<a href="#section-3.2-5.7.1" class="pilcrow">¶</a></p>
 </li>
         </ol>
 <p id="section-3.2-6">TLS version 1.3, defined in <span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span>, streamlines the handshake process and supports more robust cipher suites compared to TLS version 1.2 <span>[<a href="#RFC5246" class="cite xref">RFC5246</a>]</span>, enhancing both speed and security. However, widespread support for TLS 1.3 remains limited, with many systems still primarily utilizing TLS 1.2.<a href="#section-3.2-6" class="pilcrow">¶</a></p>
@@ -1275,6 +1275,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="section-5-1">This document has no IANA actions.<a href="#section-5-1" class="pilcrow">¶</a></p>
 </section>
 </div>
+<div id="sec-combined-references">
 <section id="section-6">
       <h2 id="name-references">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-references" class="section-name selfRef">References</a>
@@ -1339,19 +1340,24 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <span class="refAuthor">Postel, J.</span>, <span class="refTitle">"Transmission Control Protocol"</span>, <span class="seriesInfo">RFC 793</span>, <span class="seriesInfo">DOI 10.17487/RFC0793</span>, <time datetime="1981-09" class="refDate">September 1981</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc793">https://www.rfc-editor.org/rfc/rfc793</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8253">[RFC8253]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Lopez, D.</span>, <span class="refAuthor">Gonzalez de Dios, O.</span>, <span class="refAuthor">Wu, Q.</span>, and <span class="refAuthor">D. Dhody</span>, <span class="refTitle">"PCEPS: Usage of TLS to Provide a Secure Transport for the Path Computation Element Communication Protocol (PCEP)"</span>, <span class="seriesInfo">RFC 8253</span>, <span class="seriesInfo">DOI 10.17487/RFC8253</span>, <time datetime="2017-10" class="refDate">October 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8253">https://www.rfc-editor.org/rfc/rfc8253</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9110">[RFC9110]</dt>
+      <dd>
+<span class="refAuthor">Fielding, R., Ed.</span>, <span class="refAuthor">Nottingham, M., Ed.</span>, and <span class="refAuthor">J. Reschke, Ed.</span>, <span class="refTitle">"HTTP Semantics"</span>, <span class="seriesInfo">STD 97</span>, <span class="seriesInfo">RFC 9110</span>, <span class="seriesInfo">DOI 10.17487/RFC9110</span>, <time datetime="2022-06" class="refDate">June 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9110">https://www.rfc-editor.org/rfc/rfc9110</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
 </div>
 </section>
+</div>
 <div id="acknowledgments">
 <section id="appendix-A">
       <h2 id="name-acknowledgments">
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
-<p id="appendix-A-1">This document is the result of studying HTTP Over TLS <span>[<a href="#RFC2818" class="cite xref">RFC2818</a>]</span> and drawing parallels from PCEPS <span>[<a href="#RFC8253" class="cite xref">RFC8253</a>]</span>, leading to the specification for BMP over TLS (BMPS).<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<p id="appendix-A-1">This document is the result of studying HTTP Over TLS <span>[<a href="#RFC2818" class="cite xref">RFC2818</a>]</span> <span>[<a href="#RFC9110" class="cite xref">RFC9110</a>]</span> and drawing parallels from PCEPS <span>[<a href="#RFC8253" class="cite xref">RFC8253</a>]</span>, leading to the specification for BMP over TLS (BMPS).<a href="#appendix-A-1" class="pilcrow">¶</a></p>
 <p id="appendix-A-2">We are grateful to the contributors of the RFCs referenced in the References section. Their work has been instrumental in shaping and inspiring the development of this specification.<a href="#appendix-A-2" class="pilcrow">¶</a></p>
 </section>
 </div>

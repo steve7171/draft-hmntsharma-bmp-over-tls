@@ -5,8 +5,8 @@
 GROW                                                           H. Sharma
 Internet-Draft                                                 S. Clarke
 Updates: 7854 (if approved)                                     Vodafone
-Intended status: Informational                               3 July 2024
-Expires: 4 January 2025
+Intended status: Informational                              23 July 2024
+Expires: 24 January 2025
 
 
        BMPS: Transport Layer Security for BGP Monitoring Protocol
@@ -15,11 +15,11 @@ Expires: 4 January 2025
 Abstract
 
    The BGP Monitoring Protocol (BMP) defines the communication between a
-   BMP station and multiple routers.  This document describes BMP over
-   TLS, which uses Transport Layer Security (TLS) to ensure secure
-   transport between the router and the BMP monitoring station.  It
-   updates [RFC7854] regarding BMP session establishment and
-   termination.
+   BMP station and multiple routers, referred to as network elements
+   (NEs).  This document describes BMP over TLS, which uses Transport
+   Layer Security (TLS) to ensure secure transport between the NE and
+   the BMP monitoring station.  It updates [RFC7854] regarding BMP
+   session establishment and termination.
 
 Status of This Memo
 
@@ -36,7 +36,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 January 2025.
+   This Internet-Draft will expire on 24 January 2025.
 
 Copyright Notice
 
@@ -76,7 +76,7 @@ Table of Contents
 2.  Introduction
 
    The BGP Monitoring Protocol (BMP), as defined in [RFC7854],
-   facilitates communication between routers and a BMP station.  Keeping
+   facilitates communication between NEs and a BMP station.  Keeping
    this communication secure is important because it includes sharing
    sensitive information about BGP peers and monitored prefixes.
 
@@ -103,11 +103,11 @@ Table of Contents
    Transport Layer Security (TLS) Protocol Version 1.3 [RFC8446].
 
    This document describes how to utilize TLS to secure BMP sessions
-   between a monitoring station (acting as the server) and a router
-   (acting as the client).  Unlike BGP, where either side can act as the
-   server, BMP's role distinction simplifies the implementation of TLS
-   in a client-server model.  Henceforth, the term BMP over TLS will be
-   referred to as BMPS.
+   between a monitoring station (acting as the server) and a Network
+   Element (acting as the client).  Unlike BGP, where either side can
+   act as the server, BMP's role distinction simplifies the
+   implementation of TLS in a client-server model.  Henceforth, the term
+   BMP over TLS will be referred to as BMPS.
 
 3.  BMP over TLS (BMPS)
 
@@ -117,24 +117,23 @@ Table of Contents
    specification defined in [RFC7854], but with an additional layer of
    security using TLS.
 
-   In BMPS, the BMP station functions as the TLS server, while routers
-   act as TLS clients.  Following the completion of the TCP three-way
-   handshake, as defined in Section 3.4 of [RFC793], each router,
+   In BMPS, the BMP station functions as the TLS server, while NEs act
+   as TLS clients.  Following the completion of the TCP three-way
+   handshake, as defined in Section 3.4 of [RFC793], each NE,
    functioning as a TLS client, initiates a TLS handshake with the BMP
    monitoring station, acting as the TLS server.  Once the TLS
-   connection is successfully established, routers can immediately start
+   connection is successfully established, NEs can immediately start
    transmitting BMP messages, as there is no separate BMP initiation or
    handshake phase.
 
    The following steps summarize the operational flow of BMPS:
 
-   1.  The router initiates and completes a TCP handshake.
+   1.  The NE initiates and completes a TCP handshake.
 
-   2.  The router initiates and completes a TLS handshake with the BMP
+   2.  The NE initiates and completes a TLS handshake with the BMP
        monitoring station.
 
-   3.  BMP messages are transmitted by the router according to
-       [RFC7854].
+   3.  BMP messages are transmitted by the NE according to [RFC7854].
 
    A BMPS session ends when the underlying TCP or TLS session is
    terminated for any reason.
@@ -149,31 +148,30 @@ Table of Contents
    with a public/private key pair, whereas the client does not.
 
    For BMP over TLS (BMPS), it is REQUIRED to implement mutual TLS
-   (mTLS), wherein both the server (BMP station) and the client (router)
-   have certificates, and both sides authenticate each other using their
-   respective public/private key pairs.
+   (mTLS), wherein both the server (BMP station) and the client (network
+   element) have certificates, and both sides authenticate each other
+   using their respective public/private key pairs.
 
-   The organizations implementing mTLS SHOULD be their own Certification
-   Authority (CA), to create their own self-signed "root" certificate.
-   The certificates issued to both the BMP station and routers should
-   correspond to this root certificate.
+   The organizations implementing mTLS SHOULD have their own self-signed
+   "root" certificate.  The certificates issued to both the BMP station
+   and NEs should correspond to this root certificate.
 
    The operational flow of BMP over TLS is similar to standard TLS
    operations:
 
-   1.  The router initiates the connection to the BMP station.
+   1.  The NE initiates the connection to the BMP station.
 
    2.  The station presents its TLS certificate.
 
-   3.  The router verifies the station's certificate.
+   3.  The NE verifies the station's certificate.
 
-   4.  The router presents its TLS certificate.
+   4.  The NE presents its TLS certificate.
 
-   5.  The station verifies the router's certificate.
+   5.  The station verifies the NE's certificate.
 
    6.  The TLS connection is established.
 
-   7.  The router begins transmitting BMP data to the station over the
+   7.  The NE begins transmitting BMP data to the station over the
        encrypted TLS channel.
 
    TLS version 1.3, defined in [RFC8446], streamlines the handshake
@@ -270,11 +268,16 @@ Table of Contents
               RFC 8253, DOI 10.17487/RFC8253, October 2017,
               <https://www.rfc-editor.org/rfc/rfc8253>.
 
+   [RFC9110]  Fielding, R., Ed., Nottingham, M., Ed., and J. Reschke,
+              Ed., "HTTP Semantics", STD 97, RFC 9110,
+              DOI 10.17487/RFC9110, June 2022,
+              <https://www.rfc-editor.org/rfc/rfc9110>.
+
 Acknowledgments
 
-   This document is the result of studying HTTP Over TLS [RFC2818] and
-   drawing parallels from PCEPS [RFC8253], leading to the specification
-   for BMP over TLS (BMPS).
+   This document is the result of studying HTTP Over TLS [RFC2818]
+   [RFC9110] and drawing parallels from PCEPS [RFC8253], leading to the
+   specification for BMP over TLS (BMPS).
 
    We are grateful to the contributors of the RFCs referenced in the
    References section.  Their work has been instrumental in shaping and
