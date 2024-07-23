@@ -51,7 +51,6 @@ informative:
  RFC4364:
  RFC5925:
  RFC8253:
- I-D.hmntsharma-bmp-tcp-ao:
 
 
 --- abstract
