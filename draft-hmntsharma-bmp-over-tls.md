@@ -101,24 +101,31 @@ The {{Section 3.2 of RFC7854}} states, "No BMP message is ever sent from the mon
 
 In regular TLS connections, the server has a TLS certificate along with a public/private key pair, whereas the client does not.
 
-For BMP over TLS (BMPS), it is REQUIRED to implement mutual TLS (mTLS), wherein both the server (BMP station) and the client (network element) have certificates, and both sides authenticate each other using their respective public/private key pairs.
-
-A self-signed "root" TLS certificate is REQUIRED for mTLS, allowing an organization to act as its own certificate authority. The certificates issued to both the BMP station and NEs should correspond to this root certificate.
+For BMP over TLS (BMPS), it is REQUIRED to implement mutual TLS (mTLS) authentication, wherein both the server (BMP station) and the client (network element) authenticate each other. There is no definitive description of Raw Public Keys in TLS 1.3 so TLS certificate authentication MUST be supported. Both the client (network element) and the server (BMP station) MUST authenticate each other, including revocation checking, via their TLS certificate & key pairs. Policy may impose further constraints upon the peer, allowing or denying the connection based on certificate fields or any other parameters exposed by the implementation.
 
 The operational flow of BMP over TLS is similar to standard TLS operations:
 
 1. The NE initiates the connection to the BMP station.
-2. The station presents its TLS certificate.
+2. The BMP station presents its TLS certificate.
 3. The NE verifies the station's certificate.
 4. The NE presents its TLS certificate.
-5. The station verifies the NE's certificate.
+5. The BMP station verifies the NE's certificate.
 6. The TLS connection is established.
 7. The NE begins transmitting BMP data to the station over the encrypted TLS channel.
 
-TLS version 1.3, defined in {{RFC8446}}, streamlines the handshake process and supports more robust cipher suites compared to TLS version 1.2 {{RFC5246}}, enhancing both speed and security. However, widespread support for TLS 1.3 remains limited, with many systems still primarily utilizing TLS 1.2.
+TLS version 1.3, defined in {{RFC8446}}, removes vulnerabilities and weaknesses from early versions, streamlines the handshake process and supports more robust cipher suites compared to TLS version 1.2 {{RFC5246}}, enhancing both speed and security.
 
-The BMPS is REQUIRED to support TLS 1.2 or higher to ensure secure communication.
+BMPS is REQUIRED to support TLS 1.3 or higher to ensure secure communication.
 
+### TLS Certificate Path Verification
+
+The implementation of certificate based mutual authentication MUST support certificate path verification as described in Section 6 of {{RFC5280}}.
+
+In some deployments, a peer could be isolated from a remote peer's Certification Authority (CA).  Implementations for these deployments MUST support certificate chains (a.k.a. bundles or chains of trust), where the entire chain of the remote's certificate is stored on the local peer.
+
+TLS Cached Information Extension {{RFC7924}} SHOULD be implemented. This MAY be augmented with Raw Public Keys {{RFC7250}}, though revocation must be handled as it is not part of the standard.
+
+Other approaches may be used for loading the intermediate certificates onto the client, but MUST include support for revocation checking.  For example, [RFC5280] details the AIA (Authority Information Access) extension to provide information about the issuer of the certificate in which the extension appears.  It can be used to provide the address of the Online Certificate Status Protocol (OCSP) responder from where revocation status of the certificate (which includes the extension) can be checked.
 
 ## Operational Recommendations for BMPS
 
