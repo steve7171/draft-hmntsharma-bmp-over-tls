@@ -155,7 +155,7 @@ Certificate provisioning is out of scope of this document.
 
 ## TLS Resumption
 
-TLS Resumption protocol, as detailed in {{RFC8446}}, MAY be implemented to minimise the number of round trips during the handshake process. When a BMPS server is presented with a resumption request from the TLS client, it MAY still choose to require a full handshake. Where implemneted, the resumption ticket_lifetime SHOULD be configurable, including a zero seconds lifetime.  Please refer to Section 4.6.1 of {{RFC8446}} for guidance on ticket lifetime.
+TLS Resumption protocol, as detailed in {{RFC8446}}, MAY be implemented to minimise the number of round trips during the handshake process. When a BMPS server is presented with a resumption request from the TLS client, it MAY still choose to require a full handshake. Where implemented, the resumption ticket_lifetime SHOULD be configurable, including a zero seconds lifetime.  Please refer to Section 4.6.1 of {{RFC8446}} for guidance on ticket lifetime.
 
 TLS Resumption does not change the stateless behaviour the BMP Monitoring Station so all BMP message types need to resent once the BMPS session is reestablished.
 
