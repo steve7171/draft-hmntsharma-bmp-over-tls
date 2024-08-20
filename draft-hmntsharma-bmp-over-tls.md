@@ -101,9 +101,7 @@ The {{Section 3.2 of RFC7854}} states, "No BMP message is ever sent from the mon
 
 In regular TLS connections, the server has a TLS certificate along with a public/private key pair, whereas the client does not.
 
-For BMP over TLS (BMPS), it is REQUIRED to implement mutual TLS (mTLS), wherein both the server (BMP station) and the client (network element) have certificates, and both sides authenticate each other using their respective public/private key pairs.
-
-A self-signed "root" TLS certificate is REQUIRED for mTLS, allowing an organization to act as its own certificate authority. The certificates issued to both the BMP station and NEs should correspond to this root certificate.
+For BMP over TLS (BMPS), it is REQUIRED to implement mutual TLS (mTLS), wherein both the server (BMP station) and the client (network element) have certificates, and both sides authenticate each other using their respective certificate & key pairs. The use of 
 
 The operational flow of BMP over TLS is similar to standard TLS operations:
 
