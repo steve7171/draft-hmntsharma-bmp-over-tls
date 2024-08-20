@@ -183,6 +183,6 @@ This document has no IANA actions.
 # Acknowledgments
 {:numbered="false"}
 
-This document is the result of studying all the referenced RFCs and drawing some parallels from PCEPS {{RFC8253}}, leading to the specification for BMP over TLS (BMPS).
+This document is the result of studying all the referenced RFCs and drawing some parallels from PCEPS {{RFC8253}} and {{?draft-ietf-opsawg-tacacs-tls13}}, leading to the specification for BMP over TLS (BMPS).
 
 We are grateful to the contributors of the RFCs listed in the References section. Their work has been instrumental in shaping and inspiring the development of this specification.
