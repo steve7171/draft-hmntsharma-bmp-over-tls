@@ -131,31 +131,31 @@ The implementation of certificate based mutual authentication MUST support certi
 
 In some deployments, a peer could be isolated from a remote peer's Certification Authority (CA).  Implementations for these deployments MUST support certificate chains (a.k.a. bundles or chains of trust), where the entire chain of the remote's certificate is stored on the local peer.
 
-TLS Cached Information Extension [RFC7924] SHOULD be implemented. Other approaches may be used for loading the intermediate certificates onto the client, but MUST include support for revocation checking such as CRL.
+TLS Cached Information Extension {{RFC7924}} SHOULD be implemented. Other approaches may be used for loading the intermediate certificates onto the client, but MUST include support for revocation checking such as CRL.
 
 ## TLS Certification Identification
 
-For the BMP client-side validation of presented BMPS server identities, implementations MUST follow [RFC9525] validation
+For the BMP client-side validation of presented BMPS server identities, implementations MUST follow {{RFC9525}} validation
 techniques. Identifier types DNS-ID, IP-ID or SRV-ID are applicable for use with the BMPS protocol, selected by operators depending upon the deployment design. BMPS does not use URI-IDs for BMPS server identity verification. The wildcard character MUST NOT be included in the presented BMPS server identities.
 
 For the BMPS server-side validation of client identities, implementations MUST support the ability to configure which fields of a certificate are used for client identification, to verify that the client is a valid source for the received certificate and that it is
 permitted access to TACACS+. Implementations MUST support either:
 
-Network address based validation methods as described in Section 5.2 of [RFC5425].
+Network address based validation methods as described in Section 5.2 of {{RFC5425}}.
 
 or
 
 Client Identity validation of a shared identity in the certificate subjectAltName.  This is applicable in deployments where the client
 securely supports an identity which is shared with the BMPS server.  This approach allows a client's network location to be reconfigured without issuing a new client certificate.
 
-Implementations MUST support the TLS Server Name Indication extension (SNI) (Section 3 of [RFC6066]), and MUST support the ability to
+Implementations MUST support the TLS Server Name Indication extension (SNI) (Section 3 of {{RFC6066}}), and MUST support the ability to
 configure the BMPS server's domain name, so that it may be included in the SNI "server_name" extension of the client hello. Please see Section XXX-Need-to-cross-reference-XXX for security related operator considerations.
 
 Certificate provisioning is out of scope of this document.
 
 ## TLS Resumption
 
-TLS Resumption protocol, as detailed in {{[RFC8446}}, MAY be implemented to minimise the number of round trips during the handshake process. When a BMPS server is presented with a resumption request from the TLS client, it MAY still choose to require a full handshake. Where implemneted, the resumption ticket_lifetime SHOULD be configurable, including a zero seconds lifetime.  Please refer to Section 4.6.1 of {{RFC8446}} for guidance on ticket lifetime.
+TLS Resumption protocol, as detailed in {{RFC8446}}, MAY be implemented to minimise the number of round trips during the handshake process. When a BMPS server is presented with a resumption request from the TLS client, it MAY still choose to require a full handshake. Where implemneted, the resumption ticket_lifetime SHOULD be configurable, including a zero seconds lifetime.  Please refer to Section 4.6.1 of {{RFC8446}} for guidance on ticket lifetime.
 
 TLS Resumption does not change the stateless behaviour the BMP Monitoring Station so all BMP message types need to resent once the BMPS session is reestablished.
 
